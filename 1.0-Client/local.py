@@ -50,8 +50,7 @@ def csv_to_json_post_api(filepath, columns, url, header_row=None):
 
             if i > 300:
                 break
-    
-            if i > 60:
+            if i > 30:
                 sleep(3)
             json_doc = json.dumps(doc)
 
@@ -59,10 +58,10 @@ def csv_to_json_post_api(filepath, columns, url, header_row=None):
             print(response)
 
 
-
 def main():
 
-    csv_to_json_post_api(filepath=DATA_PATH, columns=COLUMNS, url=URL, header_row = None)
+    csv_to_json_post_api(filepath=DATA_PATH, columns=COLUMNS, url=URL, header_row=True)
+
 
 if __name__ == '__main__':
     main()

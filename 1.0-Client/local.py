@@ -1,5 +1,6 @@
 import os
 import csv
+from datetime import datetime
 import json
 import requests
 
@@ -21,5 +22,14 @@ def read_csv_to_json(filepath, columns, header_row = None):
         if header_row:
             next(reader)
         for i, row in enumerate(reader):
-            
-
+            doc = {
+                "InvoiceNo": int(row["InvoiceNo"]),
+                "StockCode": int(row["StockCode"]),
+                "Description": row["Description"],
+                "Quantity": int(row["Quantity"]),
+                "InvoiceDate": datetime(row["InvoiceDate"]),
+                "UnitPrice": float(row["UnitPrice"]),
+                "CustomerID": int(row["CustomerID"]),
+                "Country": row["Country"]
+            }
+        

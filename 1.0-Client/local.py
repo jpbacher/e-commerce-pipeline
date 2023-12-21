@@ -1,11 +1,10 @@
-import os
+from os import path, join, pardir
 import csv
-from datetime import datetime
 import json
 import requests
 
-PROJ_ROOT = os.path.join(os.pardir)
-DATA_PATH = os.path.join(PROJ_ROOT, 'data', 'ecommerce.csv')
+PROJ_ROOT = path.join(pardir)
+DATA_PATH = path.join(PROJ_ROOT, 'data', 'ecommerce.csv')
 COLUMNS = [
         "InvoiceNo",
         "StockCode",
@@ -59,7 +58,7 @@ def csv_to_json_post_API(filepath, columns, url, header_row = None):
 
 def main():
 
-    csv_to_json_post_API(filepath=DATA_PATH, columns=COLUMNS, url=URL, header_row = None):
+    csv_to_json_post_API(filepath=DATA_PATH, columns=COLUMNS, url=URL, header_row = None)
 
 if __name__ == '__main__':
     main()

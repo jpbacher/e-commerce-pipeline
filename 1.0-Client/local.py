@@ -2,6 +2,7 @@ from os import path, join, pardir
 import csv
 import json
 import requests
+from time import sleep
 
 PROJ_ROOT = path.join(pardir)
 DATA_PATH = path.join(PROJ_ROOT, 'data', 'ecommerce.csv')
@@ -47,9 +48,12 @@ def csv_to_json_post_API(filepath, columns, url, header_row = None):
                 "Country": row["Country"]
             }
 
-            if i > 6:
-                break
+            if i > 30:
+                sleep(3)
             json_doc = json.dumps(doc)
+            
+            if i > 300:
+                break
 
             response = requests.post(url, json_doc)
             print(response)

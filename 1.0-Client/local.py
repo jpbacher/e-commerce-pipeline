@@ -20,9 +20,9 @@ URL = "XXXXXXXXX"
 
 
 
-def csv_to_json_post_API(filepath, columns, url, header_row = None):
+def csv_to_json_post_api(filepath, columns, url, header_row=None):
 
-    """Converts csv file to json doc
+    """Converts csv file to json and posts to API
 
     Args:
         filepath (string): file path to the csv
@@ -48,7 +48,7 @@ def csv_to_json_post_API(filepath, columns, url, header_row = None):
                 "Country": row["Country"]
             }
 
-            if i > 30:
+            if i > 60:
                 sleep(3)
             json_doc = json.dumps(doc)
             
@@ -62,7 +62,7 @@ def csv_to_json_post_API(filepath, columns, url, header_row = None):
 
 def main():
 
-    csv_to_json_post_API(filepath=DATA_PATH, columns=COLUMNS, url=URL, header_row = None)
+    csv_to_json_post_api(filepath=DATA_PATH, columns=COLUMNS, url=URL, header_row = None)
 
 if __name__ == '__main__':
     main()

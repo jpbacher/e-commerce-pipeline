@@ -48,12 +48,12 @@ def csv_to_json_post_api(filepath, columns, url, header_row=None):
                 "Country": row["Country"]
             }
 
+            if i > 300:
+                break
+    
             if i > 60:
                 sleep(3)
             json_doc = json.dumps(doc)
-            
-            if i > 300:
-                break
 
             response = requests.post(url, json_doc)
             print(response)

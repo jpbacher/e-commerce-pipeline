@@ -5,31 +5,61 @@ import json
 import requests
 
 PROJ_ROOT = os.path.join(os.pardir)
-data_path = os.path.join(PROJ_ROOT, 'data', 'ecommerce.csv')
+DATA_PATH = os.path.join(PROJ_ROOT, 'data', 'ecommerce.csv')
+COLUMNS = [
+        "InvoiceNo",
+        "StockCode",
+        "Description",
+        "Quantity",
+        "InvoiceDate",
+        "UnitPrice",
+        "CustomerID",
+        "Country"   
+    ]
+URL = "XXXXXXXXX"
 
-def read_csv_to_json(filepath, columns, header_row = None):
+
+
+def csv_to_json_post_API(filepath, columns, url, header_row = None):
 
     """Converts csv file to json doc
 
     Args:
         filepath (string): file path to the csv
         columns (list): column names
+        url (string): url to API endpoint
         header_row (Boolean): whether file has header row 
     """
 
-    with open(data_path, 'r') as csvfile:
+    with open(DATA_PATH, 'r') as csvfile:
         reader = csv.DictReader(csvfile, fieldnames=columns)
         if header_row:
             next(reader)
         for i, row in enumerate(reader):
+            
             doc = {
-                "InvoiceNo": int(row["InvoiceNo"]),
-                "StockCode": int(row["StockCode"]),
+                "InvoiceNo" : int(row["InvoiceNo"]),
+                "StockCode": row["Code"],
                 "Description": row["Description"],
                 "Quantity": int(row["Quantity"]),
-                "InvoiceDate": datetime(row["InvoiceDate"]),
+                "InvoiceDate": row["InvoiceDate"],
                 "UnitPrice": float(row["UnitPrice"]),
-                "CustomerID": int(row["CustomerID"]),
+                "CustomerID": int(row["CustomeID"]),
                 "Country": row["Country"]
             }
-        
+
+            if i > 6:
+                break
+            json_doc = json.dumps(doc)
+
+            response = requests.post(url, json_doc)
+            print(response)
+
+
+
+def main():
+
+    csv_to_json_post_API(filepath=DATA_PATH, columns=COLUMNS, url=URL, header_row = None):
+
+if __name__ == '__main__':
+    main()

@@ -1,11 +1,11 @@
-from os import path, join, pardir
+import os
 import csv
 import json
 import requests
 from time import sleep
 
-PROJ_ROOT = path.join(pardir)
-DATA_PATH = path.join(PROJ_ROOT, 'data', 'ecommerce.csv')
+PROJ_ROOT = os.path.join(os.pardir)
+DATA_PATH = os.path.join(PROJ_ROOT, 'data', 'ecommerce.csv')
 COLUMNS = [
         "InvoiceNo",
         "StockCode",
@@ -16,7 +16,7 @@ COLUMNS = [
         "CustomerID",
         "Country"   
     ]
-URL = "XXXXXXXXX"
+URL = "https://epsz2w2p5j.execute-api.us-east-2.amazonaws.com/Prod"
 
 
 
@@ -39,12 +39,12 @@ def csv_to_json_post_api(filepath, columns, url, header_row=None):
             
             doc = {
                 "InvoiceNo" : int(row["InvoiceNo"]),
-                "StockCode": row["Code"],
+                "StockCode": row["StockCode"],
                 "Description": row["Description"],
                 "Quantity": int(row["Quantity"]),
                 "InvoiceDate": row["InvoiceDate"],
                 "UnitPrice": float(row["UnitPrice"]),
-                "CustomerID": int(row["CustomeID"]),
+                "CustomerID": int(row["CustomerID"]),
                 "Country": row["Country"]
             }
 

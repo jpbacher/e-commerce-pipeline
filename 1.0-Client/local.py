@@ -16,13 +16,13 @@ COLUMNS = [
         "CustomerID",
         "Country"   
     ]
-URL = "https://epsz2w2p5j.execute-api.us-east-2.amazonaws.com/Prod"
+URL = "hhttps://epsz2w2p5j.execute-api.us-east-2.amazonaws.com/Prod/ecommerce"
 
 
 
 def csv_to_json_post_api(filepath, columns, url, header_row=None):
 
-    """Converts csv file to json and posts to API
+    """Converts csv file to json and posts to API Gateway
 
     Args:
         filepath (string): file path to the csv
